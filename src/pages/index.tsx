@@ -1,4 +1,4 @@
-import HomePage, { getStaticProps } from 'components/pages/HomePage';
+import HomePage, { getServerSideProps } from 'components/pages/HomePage';
 
-export { getStaticProps };
+export { getServerSideProps };
 export default HomePage;

@@ -1,4 +1,4 @@
-import BlockPage, { getStaticProps, getStaticPaths } from './BlockPage';
+import BlockPage, { getServerSideProps } from './BlockPage';
 
-export { getStaticProps, getStaticPaths };
+export { getServerSideProps };
 export default BlockPage;

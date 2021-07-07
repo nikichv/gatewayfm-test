@@ -1,4 +1,4 @@
-import HomePage, { getStaticProps } from './HomePage';
+import HomePage, { getServerSideProps } from './HomePage';
 
-export { getStaticProps };
+export { getServerSideProps };
 export default HomePage;

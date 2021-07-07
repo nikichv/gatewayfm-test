@@ -6,7 +6,7 @@ import { BlockId } from 'features/blocks/blocks.types';
 import { AppNextPage } from 'global';
 import Head from 'next/head';
 import React from 'react';
-import { GetStaticPaths } from 'next';
+import { GetServerSideProps } from 'next';
 import { Col, Row } from 'react-bootstrap';
 import wrapper from 'store/index';
 import hexToDec from 'utils/hexToDec';
@@ -47,26 +47,16 @@ const BlockPage: AppNextPage<BlockPageProps> = props => {
 
 BlockPage.getLayout = getLayout;
 
-export const getStaticProps = wrapper.getStaticProps<BlockPageProps>(
-  store =>
-    async ({ params }) => {
-      const { id } = params as { id: BlockId };
-      await store.dispatch(getBlockByIdThunk({ params: { id } }));
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps<BlockPageProps>(store => async ({ params }) => {
+    const { id } = params as { id: BlockId };
+    await store.dispatch(getBlockByIdThunk({ params: { id } }));
 
-      return {
-        props: {
-          id,
-        },
-        revalidate: 1,
-      };
-    }
-);
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-};
+    return {
+      props: {
+        id,
+      },
+    };
+  });
 
 export default BlockPage;

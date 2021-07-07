@@ -6,6 +6,7 @@ import { AppNextPage } from 'global';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
+import { Alert } from 'react-bootstrap';
 import wrapper from 'store/index';
 
 const HomePage: AppNextPage = () => {
@@ -16,7 +17,11 @@ const HomePage: AppNextPage = () => {
       <Head>
         <title>Ethereum Blocks - Latest</title>
       </Head>
-      <BlockDetails block={block.entity} latest />
+      {block.entity ? (
+        <BlockDetails block={block.entity} latest />
+      ) : (
+        <Alert variant='danger'>Something went wrong...</Alert>
+      )}
     </>
   );
 };
